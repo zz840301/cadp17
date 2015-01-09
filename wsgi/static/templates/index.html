@@ -1,0 +1,32 @@
+##encoding: utf-8
+## 兩個 pound signs 在 Mako 語法中為註解行
+## 多行註解則使用
+<%doc>
+    這是註解
+    使用 <%! %> 表示在模組層次運作的 Python 程式碼, 可以用來 import 模組或定義相關的函式或物件
+</%doc>
+
+<html>
+        <head>
+                <title>猜數字遊戲 index.html</title>
+<%include file="meta.html"/>
+        </head>
+        <body>
+<style type="text/css" media="all">
+@import "templates/style/base.css";
+</style>  
+## 以下為一般的 Python 程式碼, 若是一般的運作則需要將 rows 數列傳進套稿中, 以便 render 頁面
+<%
+%>
+猜數字遊戲(來自 Mako) <br /><br />
+請選擇介於 1 到 100 的整數 <br /><br />
+## ${outString}
+## CherryPy 送出 st_array 數列資料
+## 應該要先將 table 資料由左至右的排列序號, 傳道 Mako, 然後利用以下迴圈將資料列印成表格
+    <form method=POST action=doCheck>
+    請輸入您所猜的整數:<input type=text name=guess><br />
+    <input type=submit value=send>
+    </form>
+##<%include file="footer.html"/>
+        </body>
+</html>

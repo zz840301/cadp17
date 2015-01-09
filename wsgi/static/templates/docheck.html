@@ -1,0 +1,44 @@
+##encoding: utf-8
+## 兩個 pound signs 在 Mako 語法中為註解行
+## 多行註解則使用
+<%doc>
+    這是註解
+    使用 <%! %> 表示在模組層次運作的 Python 程式碼, 可以用來 import 模組或定義相關的函式或物件
+</%doc>
+
+<html>
+        <head>
+                <title>docheck.html</title>
+<%include file="meta.html"/>
+        </head>
+        <body>
+<style type="text/css" media="all">
+@import "templates/style/base.css";
+</style>  
+## 以下為一般的 Python 程式碼, 若是一般的運作則需要將 rows 數列傳進套稿中, 以便 render 頁面
+<%
+%>
+% if 輸入 is "error":
+    請輸入整數!<br /><br /><a href="/">再試一次!</a><br />
+% elif 輸入 is "big":
+    太大了，再猜一次 :)加油<br />${theanswer}<br />
+    <form method=POST action=doCheck>
+    請輸入您所猜的整數:<input type=text name=guess><br />
+    <input type=submit value=send>
+    </form>
+% elif 輸入 is "small":
+    太小了，再猜一次 :)加油<br />${theanswer}<br />
+    <form method=POST action=doCheck>
+    請輸入您所猜的整數:<input type=text name=guess><br />
+    <input type=submit value=send>
+    </form>
+% elif 輸入 is "exact":
+    猜對了！答案是:${theanswer}, 總共猜了${thecount}次<br />
+    <br /><a href="/">再玩一次!<br />
+% else:
+    請輸入整數!<br /><br /><a href="/">再試一次!</a><br />
+% endif
+## ${outString}
+##<%include file="footer.html"/>
+        </body>
+</html>
